@@ -1,0 +1,5 @@
+@mixin font-sizes($fsize) {
+  font-family: Inter;
+  font-size: $fsize;
+  font-weight: 400;
+}

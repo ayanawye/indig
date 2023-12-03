@@ -1,0 +1,29 @@
+@import "../../style/variables";
+.contribution {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  &__ziro {
+    background: $ziro-cont;
+  }
+  &__low {
+    background: $low-cont;
+  }
+  &__normal {
+    background: $normal-cont;
+  }
+  &__high {
+    background: $high-cont;
+  }
+  &__overhigh {
+    background: $overhigh-cont;
+  }
+  &__tooltip {
+    position: absolute;
+    top: -48px;
+    right: -90px;
+  }
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
