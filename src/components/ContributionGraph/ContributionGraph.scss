@@ -1,0 +1,50 @@
+@import "../../style/mixins";
+.contribution_graph {
+  height: 100vh;
+  max-width: 80%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.month {
+  display: flex;
+  margin-left: 30px;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  & > p {
+    @include font-sizes(12px);
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.contributions {
+  display: flex;
+}
+.days {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  & > p {
+    @include font-sizes(12px);
+  }
+}
+
+.rates {
+  display: flex;
+  column-gap: 6px;
+  margin-top: 18px;
+  align-items: center;
+  margin-left: 30px;
+  & p {
+    @include font-sizes(8px);
+  }
+  & .colors {
+    display: flex;
+    column-gap: 2px;
+  }
+}

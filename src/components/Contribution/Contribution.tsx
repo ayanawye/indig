@@ -1,8 +1,28 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Contribution.scss";
 
-const Contribution = () => {
-  return <div></div>;
+interface Props {
+  contributionCount: number;
+}
+
+const Contribution: FC<Props> = ({ contributionCount }) => {
+  return (
+    <div
+      className={`contribution ${
+        contributionCount < 1
+          ? "contribution__ziro"
+          : contributionCount >= 1 && contributionCount <= 9
+          ? "contribution__low"
+          : contributionCount >= 10 && contributionCount <= 19
+          ? "contribution__normal"
+          : contributionCount >= 20 && contributionCount <= 29
+          ? "contribution__high"
+          : contributionCount >= 30
+          ? "contribution__overhigh"
+          : ""
+      }`}
+    ></div>
+  );
 };
 
 export default Contribution;

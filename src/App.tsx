@@ -1,10 +1,8 @@
-import React from 'react';
+import React from "react";
+import ContributionGraph from "./components/ContributionGraph/ContributionGraph";
 
 function App() {
-  return (
-    <div>
-    </div>
-  );
+  return <ContributionGraph />;
 }
 
 export default App;
