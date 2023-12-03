@@ -68,6 +68,7 @@ const ContributionGraph = () => {
               .map((contribution: (string | number)[], i) => (
                 <Contribution
                   key={i}
+                  date={contribution[0].toString()}
                   type="default"
                   contributionCount={Number(contribution[1])}
                 />

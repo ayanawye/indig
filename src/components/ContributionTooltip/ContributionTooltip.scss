@@ -1,0 +1,49 @@
+@import "../../style/mixins";
+@import "../../style/variables";
+.contributions {
+  &__count {
+    @include font-sizes(10px);
+    color: #fff;
+  }
+  &__date {
+    @include font-sizes(10px);
+    color: $grey;
+  }
+}
+
+.tooltip {
+  &__description {
+    padding: 7px 0;
+  }
+  &__visible {
+    display: block;
+  }
+  &__hidden {
+    display: none;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: center;
+  }
+  transition: 0.15s ease;
+  background: #000;
+  width: 185px;
+  height: max-content;
+  padding: 6px 9px;
+  border-radius: 3px;
+  z-index: 99;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 37%;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+  }
+}

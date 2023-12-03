@@ -1,14 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import "./Contribution.scss";
+import ContributionTooltip from "../ContributionTooltip/ContributionTooltip";
 
 interface Props {
   contributionCount: number;
   type: "default" | "description";
+  date?: Date | string;
 }
 
-const Contribution: FC<Props> = ({ contributionCount, type }) => {
+const Contribution: FC<Props> = ({ contributionCount, type, date }) => {
+  const [visibleTooltip, setVisibleTooltip] = useState(false);
   return (
     <div
+      onClick={() => setVisibleTooltip(true)}
+      onMouseLeave={() => setVisibleTooltip(false)}
       className={`contribution ${
         contributionCount < 1
           ? "contribution__ziro"
@@ -22,7 +27,42 @@ const Contribution: FC<Props> = ({ contributionCount, type }) => {
           ? "contribution__overhigh"
           : ""
       }`}
-    ></div>
+    >
+      {type === "default" ? (
+        <ContributionTooltip
+          visibility={visibleTooltip}
+          className="contribution__tooltip"
+          date={date}
+          contributionCount={`${contributionCount ? contributionCount : ""} ${
+            contributionCount
+              ? contributionCount > 1
+                ? "contributions"
+                : "contribution"
+              : "No contributions"
+          }`}
+        />
+      ) : type === "description" ? (
+        <ContributionTooltip
+          visibility={visibleTooltip}
+          className="contribution__tooltip"
+          description={`${
+            contributionCount < 1
+              ? "No contributions"
+              : contributionCount >= 1 && contributionCount <= 9
+              ? "1 - 9 contributions"
+              : contributionCount >= 10 && contributionCount <= 19
+              ? "10 - 19 contributions"
+              : contributionCount >= 20 && contributionCount <= 29
+              ? "20 - 29 contributions"
+              : contributionCount >= 30
+              ? "30+ contributions"
+              : ""
+          }`}
+        />
+      ) : (
+        ""
+      )}
+    </div>
   );
 };
 

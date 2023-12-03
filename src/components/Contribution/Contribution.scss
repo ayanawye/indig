@@ -1,7 +1,8 @@
 @import "../../style/variables";
 .contribution {
-  width: 15px;
+  position: relative;
   height: 15px;
+  width: 15px;
   &__ziro {
     background: $ziro-cont;
   }
@@ -16,5 +17,13 @@
   }
   &__overhigh {
     background: $overhigh-cont;
+  }
+  &__tooltip {
+    position: absolute;
+    top: -48px;
+    right: -90px;
+  }
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.5);
   }
 }
