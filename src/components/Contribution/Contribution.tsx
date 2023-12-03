@@ -3,9 +3,10 @@ import "./Contribution.scss";
 
 interface Props {
   contributionCount: number;
+  type: "default" | "description";
 }
 
-const Contribution: FC<Props> = ({ contributionCount }) => {
+const Contribution: FC<Props> = ({ contributionCount, type }) => {
   return (
     <div
       className={`contribution ${

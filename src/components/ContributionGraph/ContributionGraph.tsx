@@ -8,6 +8,9 @@ require("dayjs/locale/ru");
 const ContributionGraph = () => {
   dayjs.locale("ru");
   const [contributionList, setContributionList] = useState(null);
+  const [contributionListArray, setContributionListArray] = useState<
+    (string | number)[][]
+  >([]);
   const [monthList, setMonthList] = useState<string[]>([]);
   const daysList = ["Пн", "Ср", "Пт"];
 
@@ -25,9 +28,27 @@ const ContributionGraph = () => {
       setMonthList(monthsArr);
     })();
   }, []);
-
-  console.log(contributionList);
-  console.log(monthList);
+  const generateContribution = (index: number) => {
+    const newDate = dayjs(new Date())
+      .subtract(index, "day")
+      .format("YYYY-MM-DD");
+    if (contributionList && contributionList[newDate]) {
+      return [newDate, contributionList[newDate]];
+    }
+    const newContributionCount = 0;
+    const newContribution = [newDate, newContributionCount];
+    return newContribution;
+  };
+  useEffect(() => {
+    if (contributionList) {
+      let newArr: (string | number)[][] = [];
+      for (let i = 0; i < 357; i++) {
+        const contributionListElement = generateContribution(i);
+        newArr.push(contributionListElement);
+      }
+      setContributionListArray(newArr);
+    }
+  }, [contributionList]);
 
   return (
     <div className="contribution_graph">
@@ -40,16 +61,27 @@ const ContributionGraph = () => {
             <p key={i}>{el}</p>
           ))}
         </div>
-        <div className="contribution_list"></div>
+        <div className="contribution_list">
+          {contributionList &&
+            contributionListArray
+              .reverse()
+              .map((contribution: (string | number)[], i) => (
+                <Contribution
+                  key={i}
+                  type="default"
+                  contributionCount={Number(contribution[1])}
+                />
+              ))}
+        </div>
       </div>
       <div className="rates">
         <p>Меньше</p>
         <div className="colors">
-          <Contribution contributionCount={0} />
-          <Contribution contributionCount={3} />
-          <Contribution contributionCount={10} />
-          <Contribution contributionCount={23} />
-          <Contribution contributionCount={35} />
+          <Contribution type="description" contributionCount={0} />
+          <Contribution type="description" contributionCount={3} />
+          <Contribution type="description" contributionCount={10} />
+          <Contribution type="description" contributionCount={23} />
+          <Contribution type="description" contributionCount={35} />
         </div>
         <p>Больше</p>
       </div>
